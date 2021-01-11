@@ -1,10 +1,13 @@
-#File name: Exercise1_4
+#File name: Exercise1_5
 #Author: Pekka Lehtola
-#Description: Reads user inputs until 0 is given. Prints out all negative integers.
+#Description: Reads user inputs until 0 is given. Prints out all negative integers. Counts amount of even numbers.
 
+even_number_counter = 0
 
 # Defining main function
 def reader():
+
+    global even_number_counter
 
     #Takes user input
     user_given_int = input("Insert an integer: ")
@@ -20,11 +23,15 @@ def reader():
 
     #if number is 0 program ends
     if user_given_int == 0:
-        return print("Program ended.")
+        return print("Program ended. Number of even numbers were:", even_number_counter)
 
     #Prints out negative numbers
     elif user_given_int <= 0:
         print("Negative number: ", user_given_int)
+        reader()
+
+    elif user_given_int % 2 == 0:
+        even_number_counter += 1
         reader()
 
     else:
