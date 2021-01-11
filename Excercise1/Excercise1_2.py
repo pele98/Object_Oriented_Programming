@@ -1,4 +1,4 @@
-#File name: Int_and_Str_lst
+#File name: Exercise1_2
 #Author: Pekka Lehtola
 #Description: Prints a list of numbers inserted by user, prints a list of strings inserted by user and
 #             prints number list filled with random numbers.
