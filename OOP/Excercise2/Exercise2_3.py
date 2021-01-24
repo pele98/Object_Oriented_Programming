@@ -58,9 +58,15 @@ def main():
 
     my_grade = Grading_algorithm()
 
-    my_grade.num_of_exercises(int(input("Input the number of accepted exercises: ")))
+    try:
+        my_grade.num_of_exercises(int(input("Input the number of accepted exercises: ")))
 
+    except:
+        return print("Value error :( ", end="\n\n")
+        
     my_grade.grading()
+
+    
 
 while True:
 
