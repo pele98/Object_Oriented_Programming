@@ -4,8 +4,8 @@
 
 from cellphone_class import Cellphone
 
-def main():
 
+def main():
     my_cellphone = Cellphone()
 
     my_cellphone.set_manufact()
@@ -21,5 +21,6 @@ def main():
     my_cellphone.get_id()
 
     print(my_cellphone)
+
 
 main()

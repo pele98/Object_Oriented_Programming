@@ -32,11 +32,11 @@ class Cellphone:
 
     def set_id(self):
 
-        self.__id = int(input("Enter phone id (1 - 6"))
+        self.__id = int(input("Enter phone id (1 - 6): "))
 
         if self.__id >= 7 or self.__id <= 0:
             print("Value error.")
-            self.set_id(self)
+            self.set_id()
 
     def get_manufact(self):
 
