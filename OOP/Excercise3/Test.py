@@ -1,10 +1,24 @@
-fruits = ["Apple", "Pear", "Peach", "Banana"]
-prices = [0.35, 0.40, 0.40, 0.28]
 
-fruit_dictionary = dict(zip(prices, fruits))
+class Test():
 
-print(fruit_dictionary)
+    def __init__(self):
 
-fruit_dictionary.pop(min(prices))
+        self.__private = ""
+        self.public = "Test"
 
-print(fruit_dictionary)
+    def set_private(self, set):
+
+        self.__private = set
+
+    def get_private(self):
+        print(self.__private)
+
+my_test = Test()
+
+my_test.set_private("Test")
+my_test.get_private()
+
+my_test.__private = "1234"
+print(my_test.__private)
+my_test.get_private()
+
