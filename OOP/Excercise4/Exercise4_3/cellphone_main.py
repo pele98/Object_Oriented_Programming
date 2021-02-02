@@ -6,6 +6,7 @@ from cellphone_class import Cellphone
 
 
 def main():
+
     my_cellphone = Cellphone()
 
     my_cellphone.set_manufact()
