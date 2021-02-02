@@ -2,7 +2,6 @@
 # Author: Pekka Lehtola
 # Description: Cellphone class
 
-#Added id attribute and made every attribute private.
 class Cellphone:
 
     def __init__(self):
@@ -12,15 +11,15 @@ class Cellphone:
         self.__retail_price = 0
         self.__id = 0
 
-    #__str__ method for clear output prints
     def __str__(self):
         return f"""
     Manufacturer: {self.__manufact}
     Model number: {self.__model}
     Retail price: {self.__retail_price}
-    Cellphone ID: {self.__id} """
+    Cellphone ID: {self.__id} 
+    """
 
-    #Set methods for modifying private attributes
+
     def set_manufact(self):
 
         self.__manufact = str(input("Enter the manufacturer : "))
@@ -33,25 +32,23 @@ class Cellphone:
 
         self.__retail_price = float(input("Enter the retail price : "))
 
-    def set_id(self):
+    def set_id(self, id):
 
-        self.__id = int(input("Enter phone id (1 - 6): "))
+        self.__id = id
 
-        #Used for checking if input is valid
-        if self.__id >= 7 or self.__id <= 0:
-            print("Value error.")
-            self.set_id()
-
-    #used for returning private data attributes.
     def get_manufact(self):
 
         return print("Manufacturer:", self.__manufact)
+
 
     def get_model_number(self):
         return print("Model number:", self.__model)
 
     def get_retail_price(self):
         return print("Retail price:", self.__retail_price)
+
+    def get_only_id(self):
+        return self.__id
 
     def get_id(self):
         return print("Cellphone ID: ", self.__id)
