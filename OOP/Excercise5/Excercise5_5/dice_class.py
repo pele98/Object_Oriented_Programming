@@ -6,9 +6,9 @@ import random
 
 class Dice:
 
-    def __init__(self):
+    def __init__(self, id):
 
-        self.id = 0
+        self.id = id
         self.side_up = 1
 
     # Selecting random number between 1 and 6
