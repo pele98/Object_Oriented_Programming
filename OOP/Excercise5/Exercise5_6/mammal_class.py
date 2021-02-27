@@ -28,3 +28,13 @@ class Mammal:
     Breadth {self.breadth} cm
     Height {self.height} cm
         """
+
+    def set_name(self):
+        self.name = str(input("Enter a name for the animal: "))
+
+    def get_weight(self):
+        return self.weight
+    def get_species(self):
+        return self.species
+    def get_id(self):
+        return self.id
