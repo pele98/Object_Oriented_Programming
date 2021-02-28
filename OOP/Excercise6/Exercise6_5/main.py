@@ -1,10 +1,12 @@
 # File name: main
 # Author: Pekka Lehtola
-# Description: Main function for exercise 6_3
+# Description: Main function for exercise 6_5
 
+#Importing Domestic_animal and Wild_animal classes.
 from domestic_animals import *
 from wild_animals import *
 
+#Cretes dog object with given attributes.
 def dog_creating():
 
     dog = Dog()
@@ -22,6 +24,7 @@ def dog_creating():
 
     print(dog)
 
+#Cretes cat object with given attributes.
 def cat_creating():
 
     cat = Cat()
@@ -39,6 +42,7 @@ def cat_creating():
 
     print(cat)
 
+#Cretes bear object with given attributes.
 def bear_creation():
 
     bear = Bear()
@@ -59,6 +63,7 @@ def bear_creation():
 
     print(bear)
 
+#Cretes platypus object with given attributes.
 def platypus_creation():
 
     platypus = Platypus()

@@ -1,5 +1,10 @@
+# File name: wild_animals.
+# Author: Pekka Lehtola
+# Description: Bear and Platypus classes inherited from Wild_animals class.
+
 from animals import *
 
+# Inherits Bear from Wild_animals class
 class Bear(Wild_animal):
 
     def __init__(self):
@@ -8,9 +13,11 @@ class Bear(Wild_animal):
         self.colour = "Brown"
         self.likes_honey = True
 
+    #Additional Attribute colour for bear class
     def set_colour(self, colour):
         self.colour = colour
 
+    # Calling this function changes the boolean value.
     def set_likes_honey(self):
 
         if self.likes_honey:
@@ -18,6 +25,7 @@ class Bear(Wild_animal):
         else:
             self.likes_honey = True
 
+    #Bear class printing
     def __str__(self):
 
         return f"""
@@ -37,6 +45,7 @@ class Bear(Wild_animal):
     Likes honey: {self.likes_honey}
         """
 
+#Inherits Platypus from Wild_animal class
 class Platypus(Wild_animal):
 
     def __init__(self):
@@ -44,6 +53,7 @@ class Platypus(Wild_animal):
         Wild_animal.__init__(self)
         self.is_the_best_animal = True
 
+    # Calling this function does nothing because platypus is the Superior animal.
     def set_is_the_best_animal(self):
 
         if self.is_the_best_animal:
@@ -51,6 +61,7 @@ class Platypus(Wild_animal):
         else:
             self.is_the_best_animal = True
 
+    #Printing for platypus class.
     def __str__(self):
 
         return f"""

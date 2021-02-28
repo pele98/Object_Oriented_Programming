@@ -1,8 +1,13 @@
+# File name: animals
+# Author: Pekka Lehtola
+# Description: Classes Wild_animal and Domestic_animal Inherited from Mammal class.
 
 from mammal_class import *
 
+#Inherits Wild_animals from Mammal class.
 class Wild_animal(Mammal):
 
+    #Wild animals have additional attributes Herbivore and Agression.
     def __init__(self):
         Mammal.__init__(self)
         self.is_herbivore = True
@@ -22,8 +27,10 @@ class Wild_animal(Mammal):
         else:
             self.is_agressive = True
 
+# Inherits Domestic_animal from Mammal class.
 class Domestic_animal(Mammal):
 
+    #Domestic animals have additional attributes Hairyness and Training.
     def __init__(self):
         Mammal.__init__(self)
         self.is_hairy = True
