@@ -1,47 +1,56 @@
 # File:         main.py
 # Author:       
-# Description:  Deck of cards and card games.
+# Description:  Main function for exercise 7.5
 
-import card
-import deck
+from pet import *
+from student import *
 
+# Main function for testing classes.
 def main():
-    
-    print("Let's test that a single card works...")
-    
-    my_card = card.Card("Hearts", 12)
-    my_card.show_card()
-    print(my_card)
 
-    print("Single card testing is over.\n")
+    # Creating student and pet objects.
+    pekka = Student("Pekka", "Lehtola", 140124)
+    mikko = Student("Mikko", "Lehtola", 198112)
 
-    print("Let's test that a deck of card is created...")
+    sampo = Pet("Cat", "Sampo")
+    mauno = Pet("Dog", "Mauno")
 
-    my_deck = deck.Deck()
-    my_deck.show_deck()
+    # Adding pets to owners and trying to add Student as a pet.
+    pekka.add_pets(sampo)
+    mikko.add_pets(mauno)
+    pekka.add_pets(mikko)
+    print()
 
-    print("Card deck testing is over.\n")
+    # Prints out Students and Pets states.
+    print("Student printing:")
 
-    print("Let's shuffle the deck.")
-    my_deck.shuffle_deck()
+    print(pekka)
+    print(mikko)
 
-    print("Let's test that a deck of card is shuffled...")
+    print("Pet printing")
 
-    my_deck.show_deck()
+    print(sampo)
+    print(mauno)
 
-    print("Cards should be suffled now.\n")
+    # Printing out Pekkas and Mikkos pets.
+    pekka.print_pets()
 
-    print("Let's draw 2 cards and show them.")
-    print("You draw:")
-    card1 = my_deck.draw_card()
-    card1.show_card()
-    print("Your opponent draw:")
-    card1 = my_deck.draw_card()
-    card1.show_card()
-    
-    # Code your Exercise 7 taks 4 game here. 
+    mikko.print_pets()
 
-    
+    print("Trying to add allready owned pet")
+    print()
+    pekka.add_pets(mauno)
+    print()
 
-# Calling the main function here, do not change...
+    print("Removing Mauno from Mikko and trying to add it again")
+    print()
+
+    mikko.remove_pets("Mauno")
+    mikko.print_pets()
+    print()
+
+    pekka.add_pets(mauno)
+    pekka.print_pets()
+
+
 main()
