@@ -1,0 +1,117 @@
+Albania : Tirana
+Andorra : Andorra la Vella
+Armenia : Yerevan
+Austria : Vienna
+Azerbaijan : Baku
+Belarus : Minsk
+Belgium : Brussels
+Bosnia and Herzegovina : Sarajevo
+Bulgaria : Sofia
+Croatia : Zagreb
+Cyprus : Nicosia
+Czech Republic : Prague
+Denmark : Copenhagen
+Estonia : Tallinn
+Finland : Helsinki
+France : Paris
+Georgia : Tbilisi
+Germany : Berlin
+Greece : Athens
+Hungary : Budapest
+Iceland : Reykjavík
+Ireland : Dublin
+Italy : Rome
+Kazakhstan : Astana
+Latvia : Riga
+Liechtenstein : Vaduz
+Lithuania : Vilnius
+Luxembourg : Luxembourg
+Macedonia : Skopje
+Malta : Valletta
+Moldova : Chisinau
+Monaco : Monaco
+Montenegro : Podgorica
+Netherlands : Amsterdam
+Norway : Oslo
+Poland : Warsaw
+Portugal : Lisbon
+Romania : Bucharest
+Russia : Moscow
+San Marino : San Marino
+Serbia : Belgrade
+Slovakia : Bratislava
+Slovenia : Ljubljana
+Spain : Madrid
+Sweden : Stockholm
+Switzerland : Bern
+Turkey : Ankara
+Ukraine : Kiev
+United Kingdom : London
+Vatican City : Vatican City
+Afghanistan : Kabul
+Armenia : Yerevan
+Bahrain : Manama
+Bangladesh : Dhaka
+Bhutan : Thimphu
+Brunei : Bandar Seri Begawan
+Cambodia : Phnom Penh
+China : Beijing
+Cyprus : Nicosia
+East Timor : Dili
+Egypt : Cairo
+Georgia : Tbilisi
+India : New Delhi
+Indonesia : Jakarta
+Iran : Tehran
+Iraq : Baghdad
+Israel : Jerusalem
+Japan : Tokyo
+Jordan : Amman
+Kazakhstan : Astana
+Kuwait : Kuwait City
+Laos : Vientiane
+Lebanon : Beirut
+Malaysia : Kuala Lumpur
+Mongolia : Ulaanbaatar
+Myanmar : Naypyidaw
+Nepal : Kathmandu
+North Korea : Pyongyang
+Pakistan : Islamabad
+Palestine : Ramallah
+Philippines : Manila
+Qatar : Doha
+Russia : Moscow
+Saudi Arabia : Riyadh
+Singapore : Singapore
+South Korea : Seoul
+Sri Lanka : Colombo
+Syria : Damascus
+Taiwan : Taipei
+Thailand : Bangkok
+Turkey : Ankara
+United Arab Emirates : Abu Dhabi
+Vietnam : Hanoi
+Yemen : Sana’a
+Antigua and Barbuda : St. John’s
+The Bahamas : Nassau
+Barbados : Bridgetown
+Belize : Belmopan
+Canada : Ottawa
+Costa Rica : San Jose
+Cuba : Havana
+Dominica : Roseau
+Dominican Republic : Santo Domingo
+El Salvador : San Salvador
+Grenada : St. George’s
+Guatemala : Guatemala City
+Haiti : Port-au-Prince
+Honduras : Tegucigalpa
+Jamaica : Kingston
+Mexico : Mexico City
+Nicaragua : Managua
+Panama : Panama City
+Saint Kitts and Nevis : Basseterre
+Saint Lucia : Castries
+Saint Vincent and the Grenadines : Kingstown
+Trinidad and Tobago : Port of Spain
+United States : Washington, D.C.

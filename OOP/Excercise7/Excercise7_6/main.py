@@ -1,47 +1,68 @@
 # File:         main.py
 # Author:       
-# Description:  Deck of cards and card games.
+# Description:  Main function fro exercise 7.6
 
-import card
-import deck
+import random
 
-def main():
-    
-    print("Let's test that a single card works...")
-    
-    my_card = card.Card("Hearts", 12)
-    my_card.show_card()
-    print(my_card)
+countrys = {}
 
-    print("Single card testing is over.\n")
+# Opens countrys txt file and seperates it into keys and values.
+# Also removes linebreak at the end of capitals
+with open("countrys.txt") as c:
 
-    print("Let's test that a deck of card is created...")
+    for line in c:
+        (key, capital) = line.split(" : ")
+        (val, space) = capital.split("\n")
+        countrys[key] = val
 
-    my_deck = deck.Deck()
-    my_deck.show_deck()
+# Add countrys into a list and puts them into a random order.
+# Adds shuffled countrys back to the dictionary.
+# Also creates list of Countrys that can be called with index number
 
-    print("Card deck testing is over.\n")
+shuffle = list(countrys.items())
+random.shuffle(shuffle)
+countrys = dict(shuffle)
+country_lst = list(countrys)
 
-    print("Let's shuffle the deck.")
-    my_deck.shuffle_deck()
 
-    print("Let's test that a deck of card is shuffled...")
+print("The Capital quiz")
+print("Write the capital of the country")
+print()
 
-    my_deck.show_deck()
+while True:
 
-    print("Cards should be suffled now.\n")
+    points = 0
 
-    print("Let's draw 2 cards and show them.")
-    print("You draw:")
-    card1 = my_deck.draw_card()
-    card1.show_card()
-    print("Your opponent draw:")
-    card1 = my_deck.draw_card()
-    card1.show_card()
-    
-    # Code your Exercise 7 taks 4 game here. 
+    # With country lists index value checks if user input matches dictionarys
+    # key value. Correct awnser gives user a point and íncorret awnser returns correct
+    # awnser.
 
-    
+    for i in range(10):
 
-# Calling the main function here, do not change...
-main()
+        print(country_lst[i])
+
+        user_input = input(": ")
+
+        if user_input == countrys[country_lst[i]]:
+            print("Correct!")
+            print()
+            points += 1
+
+        else:
+            print("Wrong, correct awnser is", countrys[country_lst[i]])
+            print()
+
+    # Prints out users score and prompts user if game is played again.
+
+    print("Your score was", str(points) + "/10")
+    print()
+    user_input = input("Want to play again (Yes or No): ")
+
+    while True:
+
+        if user_input == "Yes":
+            print()
+            break
+
+        if user_input == "No":
+            exit()
