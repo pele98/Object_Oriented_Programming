@@ -9,12 +9,29 @@ countrys = {}
 # Opens countrys txt file and seperates it into keys and values.
 # Also removes linebreak at the end of capitals
 
+while True:
+
+    user_input = input("Do you want to quess 'Country's or 'Capital's : ")
+
+    if user_input == "Country":
+        question = "Capital"
+        break
+
+    elif user_input == "Capital":
+        question = "Country"
+        break
+
 with open("countrys.txt") as c:
 
     for line in c:
         (key, capital) = line.split(" : ")
         (val, space) = capital.split("\n")
-        countrys[key] = val
+
+        if user_input == "Capital":
+            countrys[key] = val
+
+        elif user_input == "Country":
+            countrys[val] = key
 
 # Add countrys into a list and puts them into a random order.
 # Adds shuffled countrys back to the dictionary.
@@ -26,8 +43,9 @@ countrys = dict(shuffle)
 country_lst = list(countrys)
 
 
-print("The Capital quiz")
-print("Write the capital of the country")
+print("The Country/Capital quiz")
+
+print("Write the", user_input, "of this", question)
 print()
 
 while True:
