@@ -2,6 +2,7 @@
 # Author:
 # Description:  House class
 
+#Setting inital state of the house
 class House:
 
     def __init__(self):
@@ -24,7 +25,7 @@ class House:
 
         self.toilet_paper = "Running out"
 
-
+    #Cleaning windows and making the bed.
     def set_windows_and_bed(self):
 
         print("Making the bed.")
@@ -40,6 +41,7 @@ class House:
         self.bathroom_window = "Clean"
         print(self)
 
+    #Vacuumming the floors and dusting surfaces
     def set_floors_and_surfaces(self):
 
         print("Starting to vacuum floors")
@@ -65,6 +67,7 @@ class House:
 
         print(self)
 
+    #Fill the fridge and get toiletpaper
     def set_shopping(self):
 
         print("Realized that you are running out of food and toilet paper.")
@@ -75,6 +78,7 @@ class House:
 
         print(self)
 
+    #Get a lot more toilet paper.
     def set_pandemic_shopping(self):
 
         print("Realize that its pandemic and you go and hoard toilet paper")
@@ -83,6 +87,7 @@ class House:
 
         print(self)
 
+    #Printing houses status.
     def __str__(self):
         return f"""
     Houses status:
