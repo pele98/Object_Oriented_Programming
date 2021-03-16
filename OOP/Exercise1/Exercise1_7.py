@@ -23,4 +23,4 @@ def arithmetic_progression(maximum_value):
     return exit()
 
 #Asks for user input
-arithmetic_progression(int(input("Please inser maximum value: ")))
+arithmetic_progression(int(input("Please insert maximum value: ")))

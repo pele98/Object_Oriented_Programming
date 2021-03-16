@@ -18,7 +18,7 @@ Georgia : Tbilisi
 Germany : Berlin
 Greece : Athens
 Hungary : Budapest
-Iceland : Reykjavík
+Iceland : Reykjavik
 Ireland : Dublin
 Italy : Rome
 Kazakhstan : Astana

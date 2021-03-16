@@ -145,7 +145,7 @@ def black_jack():
             print("Player wins")
             print("Restarting game")
             print()
-            time.sleep(3)
+            time.sleep(5)
             black_jack()
 
         # Promts user to hit me (Continue game) or stop his turn.
@@ -164,7 +164,7 @@ def black_jack():
                 print("Sum is over 21, Dealer wins!")
                 print("Restarting game.")
                 print()
-                time.sleep(3)
+                time.sleep(5)
                 black_jack()
 
     # When player ends his turn Dealers turn starts.
@@ -185,21 +185,21 @@ def black_jack():
             print("Dealers sum over 21. Player wins!")
             print("Restarting game")
             print()
-            time.sleep(3)
+            time.sleep(5)
             black_jack()
 
         elif dealer.sum > player.sum:
             print("Dealer wins! ")
             print("Restarting game")
             print()
-            time.sleep(3)
+            time.sleep(5)
             black_jack()
 
         else:
             print("Dealers hand lower than players")
             print("Dealer draws another")
 
-        time.sleep(2)
+        time.sleep(5)
         dealer.draw(my_deck)
         dealer.show_hand()
         dealer.sum_of_cards_blackjack()

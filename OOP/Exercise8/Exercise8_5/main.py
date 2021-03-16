@@ -37,18 +37,20 @@ with open("countrys.txt") as c:
 # Adds shuffled countrys back to the dictionary.
 # Also creates list of Countrys that can be called with index number
 
-shuffle = list(countrys.items())
-random.shuffle(shuffle)
-countrys = dict(shuffle)
-country_lst = list(countrys)
-
-
-print("The Country/Capital quiz")
-
-print("Write the", user_input, "of this", question)
-print()
-
 while True:
+
+    shuffle = list(countrys.items())
+    random.shuffle(shuffle)
+    countrys = dict(shuffle)
+    country_lst = list(countrys)
+
+
+    print("The Country/Capital quiz")
+
+    print("Write the", user_input, "of this", question)
+    print()
+
+
 
     points = 0
 
