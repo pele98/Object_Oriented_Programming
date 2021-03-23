@@ -19,6 +19,8 @@ WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 
+HEARTH = "34px"
+
 # Green screen color is used to remove background from sprites.
 GREEN_SCREEN = (0, 177, 64)
 

@@ -19,6 +19,7 @@ class Character(pygame.sprite.Sprite):
         self.reloaded = True
         self.shooting_speed = SHOOTING_SPEED
         self.reload_speed = RELOAD_SPEED
+        self.healt = []
 
     # Reloading function
     def reload(self, pressed_keys):

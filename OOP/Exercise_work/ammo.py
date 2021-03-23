@@ -28,11 +28,19 @@ class Ammo(pygame.sprite.Sprite):
                 self.rect.move_ip(-BULLET_VELOCITY, 0)
 
                 if self.rect.colliderect(enemy.rect):
-                    enemy.kill()
+                    self.rect.x = -200
+                    self.kill()
+                    enemy.healt.pop(-1)
+                    if len(enemy.healt) == 0:
+                        enemy.kill()
 
             # Same as indian but bullet travels right
-            if shooter.name == "Cowboy" :
+            if shooter.name == "Cowboy":
                 self.rect.move_ip(BULLET_VELOCITY, 0)
 
                 if self.rect.colliderect(enemy.rect):
-                    enemy.kill()
+                    self.rect.x = 2200
+                    self.kill()
+                    enemy.healt.pop(-1)
+                    if len(enemy.healt) == 0:
+                        enemy.kill()

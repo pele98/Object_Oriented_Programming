@@ -5,11 +5,11 @@
 import pygame
 from config import *
 from character import *
+from ui import *
 import time
 
 # Initialize pygame
 pygame.init()
-
 
 # Sets up screen size
 screen = pygame.display.set_mode([SCREEN_SIZE_HOR, SCREEN_SIZE_VER])
@@ -23,6 +23,12 @@ indian.rect.y = 640
 # Cowboys initial location
 cowboy.rect.x = 100
 cowboy.rect.y = 640
+
+heart = Hearth()
+
+heart.set_up_hearths(character=cowboy)
+heart.set_up_hearths(character=indian)
+
 
 while running:
 
@@ -41,6 +47,9 @@ while running:
 
     for characters in all_sprites:
         screen.blit(characters.surf, characters.rect)
+
+    heart.show_hearts(cowboy, screen)
+    heart.show_hearts(indian, screen)
 
     # Reload function
     indian.reload(pressed_keys)
