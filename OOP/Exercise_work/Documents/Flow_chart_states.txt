@@ -1,0 +1,8 @@
+state 1:
+
+pygame initialized, Characters created, ammo is full,
+health full, screen updated.
+
+state 2:
+
+draw characters hearts and ammo to the screen

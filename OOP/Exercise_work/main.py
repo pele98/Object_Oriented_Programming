@@ -6,82 +6,118 @@ import pygame
 from config import *
 from character import *
 from ui import *
-import time
-
-# Initialize pygame
-pygame.init()
-
-# Sets up screen size
-screen = pygame.display.set_mode([SCREEN_SIZE_HOR, SCREEN_SIZE_VER])
+from time import perf_counter, sleep
 
 running = True
 
-# Indians initial location
-indian.rect.x = 1820
-indian.rect.y = 640
+def main():
 
-# Cowboys initial location
-cowboy.rect.x = 100
-cowboy.rect.y = 640
+        # Initialize pygame
+        pygame.init()
 
-heart = Hearth()
-
-heart.set_up_hearths(character=cowboy)
-heart.set_up_hearths(character=indian)
+        # Sets up screen size
+        screen = pygame.display.set_mode([SCREEN_SIZE_HOR, SCREEN_SIZE_VER])
 
 
-while running:
+        global running
 
-    # Detects events while game is running.
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        # Creates indian and cowboy objects.
+        # Also define graphigs to them.
+        indian = Character("images/indian_1.png", "Indian")
+        cowboy = Character("images/cowboy_1.png", "Cowboy")
 
-    # Pygame detects what keys are pressed.
-    pressed_keys = pygame.key.get_pressed()
+        # Adds indian and cowboy to sprite group.
+        all_sprites = pygame.sprite.Group()
+        all_sprites.add(indian)
+        all_sprites.add(cowboy)
 
-    # The term used for rendering objects is blitting.
-    # Surf : Surface, Rect : Rectangle.
-    # Rectangle is used for collide detection
-    # Surface can be image or color.
+        # Indians initial location
+        indian.rect.x = 1820
+        indian.rect.y = 640
 
-    for characters in all_sprites:
-        screen.blit(characters.surf, characters.rect)
+        # Cowboys initial location
+        cowboy.rect.x = 100
+        cowboy.rect.y = 640
 
-    heart.show_hearts(cowboy, screen)
-    heart.show_hearts(indian, screen)
+        hearth = Ui("images/hearth_1.png")
+        reload = Ui("images/circle1.png")
 
-    # Reload function
-    indian.reload(pressed_keys)
-    cowboy.reload(pressed_keys)
+        hearth.set_up_hearts(character=cowboy)
+        hearth.set_up_hearts(character=indian)
 
-    # Shooting function
-    indian.shoot(pressed_keys)
-    cowboy.shoot(pressed_keys)
+        # Background update
+        screen.blit(BG, (0, 0))
 
-    # Moving function
-    indian.move(pressed_keys)
-    cowboy.move(pressed_keys)
+        # start countdown
+        start = Ui("images/11.png")
+        start.game_start(ONE, TWO, THREE, screen)
+        start.kill()
 
-    # Bullet travel and hit detection
-    for ammo in indian.shot_ammo:
+        while running:
 
-        ammo.ammo_shot(indian, cowboy)
-        screen.blit(ammo.surf, ammo.rect)
+            time = perf_counter()
 
-    for ammo in cowboy.shot_ammo:
+            # Detects events while game is running.
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
 
-        ammo.ammo_shot(cowboy, indian)
-        screen.blit(ammo.surf, ammo.rect)
+            # Pygame detects what keys are pressed.
+            pressed_keys = pygame.key.get_pressed()
+
+            # The term used for rendering objects is blitting.
+            # Surf : Surface, Rect : Rectangle.
+            # Rectangle is used for collide detection
+            # Surface can be image or color.
+
+            for characters in all_sprites:
+                screen.blit(characters.surf, characters.rect)
+
+            # Ui elements
+            hearth.show_hearts(cowboy, screen)
+            hearth.show_hearts(indian, screen)
+
+            hearth.show_ammo(cowboy, screen)
+            hearth.show_ammo(indian, screen)
+
+            reload.show_reload(indian, screen)
+            reload.show_reload(cowboy, screen)
 
 
-    # Update screen
-    pygame.display.flip()
+            # Reload function
+            indian.reload(pressed_keys, time)
+            cowboy.reload(pressed_keys, time)
 
-    # Background update
-    screen.blit(BG, (0,0))
+            # Shooting function
+            indian.shoot(pressed_keys, time)
+            cowboy.shoot(pressed_keys, time)
 
-    # Sets Frame duration
-    time.sleep(FRAME_DURATION)
+            # Moving function
+            indian.move(pressed_keys)
+            cowboy.move(pressed_keys)
 
-pygame.quit()
+            # Bullet travel and hit detection
+            for ammo in indian.shot_ammo:
+
+                ammo.ammo_shot(indian, cowboy)
+                screen.blit(ammo.surf, ammo.rect)
+
+            for ammo in cowboy.shot_ammo:
+
+                ammo.ammo_shot(cowboy, indian)
+                screen.blit(ammo.surf, ammo.rect)
+
+            # Update screen
+            pygame.display.flip()
+
+            # Background update
+            screen.blit(BG, (0,0))
+
+            # Starts game over when either character dies.
+            if len(indian.health) == 0 or len(cowboy.health) == 0:
+
+                main()
+
+        pygame.quit()
+
+main()

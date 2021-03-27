@@ -1,9 +1,5 @@
+one = 0.1
+two = 1.1
 
-
-ammo = [1,2,3,4,5,6,7]
-
-test = ammo.pop(-1)
-
-print(ammo)
-
-print(test)
+print(int(one))
+print(int(two))

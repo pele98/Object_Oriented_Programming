@@ -16,80 +16,90 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect(size=(40,114), center=(0, 0))    # Sets up characters hitbox
         self.ammo = []                                                  # Reloaded ammo
         self.shot_ammo = []                                             # Ammo that character has shot
-        self.reloaded = True
-        self.shooting_speed = SHOOTING_SPEED
-        self.reload_speed = RELOAD_SPEED
-        self.healt = []
+        self.reloaded = False
+        self.reload_img = False
+        self.shooting_speed = 0
+        self.reload_speed = INF
+        self.health = []
 
     # Reloading function
-    def reload(self, pressed_keys):
+
+    def reload(self, pressed_keys, time):
 
         # Detects which player is reloading
         if self.name == "Indian":
 
-            # Reload speed updates each frame creating time delay how fast ammo is loaded.
-            if self.reload_speed < RELOAD_SPEED:
+            # Reload speed updates with timer and emptys ammo list so shooting while reload timer is on
+            # is prevented
+            if pressed_keys[K_k]:
 
-                self.reload_speed += 1
+                self.reload_speed = time + RELOAD_SPEED_INDIAN
+                self.ammo = []
+                self.reload_img = True
 
-                if self.reload_speed == RELOAD_SPEED:
-                    self.reloaded = True
+            # If timer is smaller than reload speed reload is set to True
+            if self.reload_speed < time:
+                self.reloaded = False
+                self.reload_speed = INF # sets reload speed to INF to prevent automatic reloading.
 
             # Restarts reload speed and appends ammo to magazine.
-            elif self.reloaded == True and pressed_keys[K_k]:
+            if self.reloaded == False:
 
-                self.reload_speed = 0
-
-                self.ammo = []
-
-                for ammo in range(0, 3):
+                self.reload_img = False
+                for ammo in range(0, 4):
 
                     ammo = Ammo("images/arrow.png", "arrow")    # Define which ammo is inserted.
 
                     self.ammo.append(ammo)
 
-                self.reloaded = False
+                self.reloaded = True
+
 
         # Cowboys reload function is indentical
         if self.name == "Cowboy":
 
-            if self.reload_speed < RELOAD_SPEED:
+            # Reload speed updates with timer and emptys ammo list so shooting while reload timer is on
+            # is prevented
+            if pressed_keys[K_r]:
 
-                self.reload_speed += 1
-
-                if self.reload_speed == RELOAD_SPEED:
-                    self.reloaded = True
-
-            elif self.reloaded == True and pressed_keys[K_r]:
-
-                self.reload_speed = 0
-
+                self.reload_speed = time + RELOAD_SPEED_COWBOY
                 self.ammo = []
+                self.reload_img = True
+
+            # If timer is smaller than reload speed reload is set to True
+            if self.reload_speed < time:
+                self.reloaded = False
+                self.reload_speed = INF  # sets reload speed to INF to prevent automatic reloading.
+
+            # Restarts reload speed and appends ammo to magazine.
+            if self.reloaded == False:
+
+                self.reload_img = False
 
                 for ammo in range(0, 6):
 
-                    ammo = Ammo("images/bullet.png", "bullet")
+                    ammo = Ammo("images/bullet.png", "bullet")  # Define which ammo is inserted.
 
                     self.ammo.append(ammo)
 
-                self.reloaded = False
+                self.reloaded = True
 
     # Shooting function
-    # Work similary to reload function with time delay.
-    def shoot(self, pressed_keys):
+    # Work similary to reload function with time delay using time.perf_counter.
+    def shoot(self, pressed_keys, time):
 
         if self.name == "Cowboy":
 
-            if self.shooting_speed == SHOOTING_SPEED and pressed_keys[K_SPACE]:
+            if pressed_keys[K_SPACE] and self.shooting_speed < time:
 
-                self.shooting_speed = 0
+                self.shooting_speed = time + SHOOTING_SPEED_COWBOY
 
                 if self.reloaded:
 
                     try:
                         ammo = self.ammo.pop(-1)        # Removes last ammo object from ammo list
                         self.shot_ammo.append(ammo)     # Adds that ammo to shot ammo list
-                        ammo.rect.x = self.rect.x + 30  # Ammos intial location is players X
+                        ammo.rect.x = self.rect.x + 30  # Ammos initial location is players X
                         ammo.rect.y = self.rect.y + 63  # And Y coordinates
                         ammo.shot = True
 
@@ -97,16 +107,13 @@ class Character(pygame.sprite.Sprite):
 
                         pass
 
-            if self.shooting_speed < SHOOTING_SPEED:
 
-                self.shooting_speed += 1
-
-        # Indians reload function is identical
+        # Indians shooting function is identical
         if self.name == "Indian":
 
-            if self.shooting_speed == SHOOTING_SPEED and pressed_keys[K_j]:
+            if pressed_keys[K_j] and self.shooting_speed < time:
 
-                self.shooting_speed = 0
+                self.shooting_speed = time + SHOOTING_SPEED_INDIAN
 
                 try:
 
@@ -120,8 +127,6 @@ class Character(pygame.sprite.Sprite):
 
                     pass
 
-            if self.shooting_speed < SHOOTING_SPEED:
-                self.shooting_speed += 1
 
     # Moving function
     def move(self, pressed_keys):
@@ -159,14 +164,5 @@ class Character(pygame.sprite.Sprite):
         if self.rect.bottom >= SCREEN_SIZE_VER:
             self.rect.bottom = SCREEN_SIZE_VER
 
+    ### WORK IN PROGRESS ###
     #def scale(self):
-
-# Creates indian and cowboy objects.
-# Also define graphigs to them.
-indian = Character("images/indian_1.png", "Indian")
-cowboy = Character("images/cowboy_1.png", "Cowboy")
-
-# Adds indian and cowboy to sprite group.
-all_sprites = pygame.sprite.Group()
-all_sprites.add(indian)
-all_sprites.add(cowboy)
