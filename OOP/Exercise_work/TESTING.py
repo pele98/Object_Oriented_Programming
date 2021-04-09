@@ -1,5 +1,7 @@
-one = 0.1
-two = 1.1
+import time
 
-print(int(one))
-print(int(two))
+time.perf_counter()
+print(time.perf_counter())
+time.sleep(6)
+
+print(time.perf_counter())

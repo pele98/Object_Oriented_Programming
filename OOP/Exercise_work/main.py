@@ -7,6 +7,8 @@ from config import *
 from character import *
 from ui import *
 from time import perf_counter, sleep
+from heart_ui import *
+from ammo_ui import *
 
 running = True
 
@@ -39,8 +41,8 @@ def main():
         cowboy.rect.x = 100
         cowboy.rect.y = 640
 
-        hearth = Ui("images/hearth_1.png")
-        reload = Ui("images/circle1.png")
+        hearth = Heart_ui("images/hearth_1.png")
+        reload = Ammo_ui("images/circle1.png")
 
         hearth.set_up_hearts(character=cowboy)
         hearth.set_up_hearts(character=indian)
@@ -49,9 +51,21 @@ def main():
         screen.blit(BG, (0, 0))
 
         # start countdown
-        start = Ui("images/11.png")
-        start.game_start(ONE, TWO, THREE, screen)
-        start.kill()
+        one = Ui("images/11.png")
+        one.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+        two = Ui("images/22.png")
+        two.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+        three = Ui("images/33.png")
+        three.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+        cowboy_wins = Ui("images/cowboy_wins.png")
+        indian_wins = Ui("images/indian_wins.png")
+
 
         while running:
 
@@ -77,8 +91,8 @@ def main():
             hearth.show_hearts(cowboy, screen)
             hearth.show_hearts(indian, screen)
 
-            hearth.show_ammo(cowboy, screen)
-            hearth.show_ammo(indian, screen)
+            reload.show_ammo(cowboy, screen)
+            reload.show_ammo(indian, screen)
 
             reload.show_reload(indian, screen)
             reload.show_reload(cowboy, screen)
@@ -114,8 +128,14 @@ def main():
             screen.blit(BG, (0,0))
 
             # Starts game over when either character dies.
-            if len(indian.health) == 0 or len(cowboy.health) == 0:
+            if len(indian.health) == 0:
+                cowboy_wins.show_element(screen)
+                sleep(1)
+                main()
 
+            if len(cowboy.health) == 0:
+                indian_wins.show_element(screen)
+                sleep(1)
                 main()
 
         pygame.quit()
