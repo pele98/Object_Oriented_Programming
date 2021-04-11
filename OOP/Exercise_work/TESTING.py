@@ -1,7 +1,9 @@
 import time
 
-time.perf_counter()
-print(time.perf_counter())
-time.sleep(6)
+bullet = (20, 11)
 
-print(time.perf_counter())
+print(bullet)
+
+bullet *= 2
+
+print (bullet)

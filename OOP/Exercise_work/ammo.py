@@ -17,6 +17,8 @@ class Ammo(pygame.sprite.Sprite):
 
         self.shot = False
 
+        self.super = False
+
     # Function for shot ammo
     def ammo_shot(self, shooter, enemy):
 
@@ -28,15 +30,25 @@ class Ammo(pygame.sprite.Sprite):
                 self.rect.move_ip(-BULLET_VELOCITY, 0)
 
                 if self.rect.colliderect(enemy.rect):
-                    self.rect.x = -200
+                    self.rect.x = -2200
                     self.kill()
-                    try:
-                        enemy.health.pop(-1)
+
+                    if self.super:
+
+                        for heart in range(3):
+
+                            if len(enemy.health) == 0:
+                                enemy.kill()
+
+                            else:
+                                enemy.health.pop(-1)
+                    else:
+
                         if len(enemy.health) == 0:
                             enemy.kill()
 
-                    except:
-                        pass
+                        else:
+                            enemy.health.pop(-1)
 
             # Same as indian but bullet travels right
             if shooter.name == "Cowboy":
@@ -45,9 +57,20 @@ class Ammo(pygame.sprite.Sprite):
                 if self.rect.colliderect(enemy.rect):
                     self.rect.x = 2200
                     self.kill()
-                    try:
-                        enemy.health.pop(-1)
+
+                    if self.super:
+
+                        for heart in range(3):
+
+                            if len(enemy.health) == 0:
+                                enemy.kill()
+
+                            else:
+                                enemy.health.pop(-1)
+                    else:
+
                         if len(enemy.health) == 0:
                             enemy.kill()
-                    except:
-                        pass
+
+                        else:
+                            enemy.health.pop(-1)

@@ -13,7 +13,7 @@ class Character(pygame.sprite.Sprite):
         self.name = name
         self.surf = pygame.image.load(sprite)                           # Surface image
         self.surf.set_colorkey(GREEN_SCREEN)                            # Defining see through color
-        self.rect = self.surf.get_rect(size=(40,114), center=(0, 0))    # Sets up characters hitbox
+        self.rect = self.surf.get_rect()    # Sets up characters hitbox
         self.ammo = []                                                  # Reloaded ammo
         self.shot_ammo = []                                             # Ammo that character has shot
         self.reloaded = False

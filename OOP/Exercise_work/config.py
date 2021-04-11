@@ -18,6 +18,13 @@ RELOAD_SPEED_COWBOY = 2
 SHOOTING_SPEED_INDIAN = 0.3
 RELOAD_SPEED_INDIAN = 0.9
 
+bullet_x = 20
+bullet_y = 11
+
+arrow_x = 56
+arrow_y = 19
+
+
 INF = 100**100
 
 WHITE = (255, 255, 255)

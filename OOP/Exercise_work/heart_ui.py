@@ -4,22 +4,20 @@
 
 import pygame
 from config import *
-import time
 from ui import Ui
 
 
 class Heart_ui(Ui):
 
-    def __init__(self, image):
-        super(Heart_ui, self).__init__(image)
-
+    def __init__(self):
+        super(Heart_ui, self).__init__("images/hearth_1.png")
 
         # Sets 4 hearts for each player.
 
     def set_up_hearts(self, character):
 
         for heart in range(0, 4):
-            heart = Ui("images/hearth_1.png")
+            heart = Heart_ui()
             character.health.append(heart)
 
         # Draws hearts for each player into the screen.
@@ -53,3 +51,7 @@ class Heart_ui(Ui):
                 screen.blit(hearth.surf, hearth.rect)
 
                 x -= 40
+
+
+
+

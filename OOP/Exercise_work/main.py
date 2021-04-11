@@ -9,8 +9,13 @@ from ui import *
 from time import perf_counter, sleep
 from heart_ui import *
 from ammo_ui import *
+from heart_power_up import *
+from super_ammo import Ammo_power_up
+from random import randint
 
 running = True
+
+
 
 def main():
 
@@ -20,7 +25,8 @@ def main():
         # Sets up screen size
         screen = pygame.display.set_mode([SCREEN_SIZE_HOR, SCREEN_SIZE_VER])
 
-
+        heart_timer = randint(7, 12)
+        super_ammo_timer = randint(14, 20)
         global running
 
         # Creates indian and cowboy objects.
@@ -41,35 +47,28 @@ def main():
         cowboy.rect.x = 100
         cowboy.rect.y = 640
 
-        hearth = Heart_ui("images/hearth_1.png")
+        heart = Heart_ui()
         reload = Ammo_ui("images/circle1.png")
 
-        hearth.set_up_hearts(character=cowboy)
-        hearth.set_up_hearts(character=indian)
+        heart_power_up_list = []
+        super_ammo_power_up_list = []
+
+        heart.set_up_hearts(character=cowboy)
+        heart.set_up_hearts(character=indian)
 
         # Background update
         screen.blit(BG, (0, 0))
 
         # start countdown
-        one = Ui("images/11.png")
-        one.show_element(screen)
-        screen.blit(BG, (0, 0))
+        countdown = Ui("images/11.png")
+        countdown.countdown(screen)
 
-        two = Ui("images/22.png")
-        two.show_element(screen)
-        screen.blit(BG, (0, 0))
-
-        three = Ui("images/33.png")
-        three.show_element(screen)
-        screen.blit(BG, (0, 0))
-
-        cowboy_wins = Ui("images/cowboy_wins.png")
-        indian_wins = Ui("images/indian_wins.png")
-
+        winner = Ui("images/cowboy_wins.png")
 
         while running:
 
-            time = perf_counter()
+            timer = perf_counter()
+
 
             # Detects events while game is running.
             for event in pygame.event.get():
@@ -88,8 +87,8 @@ def main():
                 screen.blit(characters.surf, characters.rect)
 
             # Ui elements
-            hearth.show_hearts(cowboy, screen)
-            hearth.show_hearts(indian, screen)
+            heart.show_hearts(cowboy, screen)
+            heart.show_hearts(indian, screen)
 
             reload.show_ammo(cowboy, screen)
             reload.show_ammo(indian, screen)
@@ -99,12 +98,12 @@ def main():
 
 
             # Reload function
-            indian.reload(pressed_keys, time)
-            cowboy.reload(pressed_keys, time)
+            indian.reload(pressed_keys, timer)
+            cowboy.reload(pressed_keys, timer)
 
             # Shooting function
-            indian.shoot(pressed_keys, time)
-            cowboy.shoot(pressed_keys, time)
+            indian.shoot(pressed_keys, timer)
+            cowboy.shoot(pressed_keys, timer)
 
             # Moving function
             indian.move(pressed_keys)
@@ -121,6 +120,32 @@ def main():
                 ammo.ammo_shot(cowboy, indian)
                 screen.blit(ammo.surf, ammo.rect)
 
+            # Power ups
+
+            if timer > heart_timer:
+
+                heart_timer = timer + randint(7, 12)
+                heart_power_up = Heart_power_up()
+                heart_power_up.add_power_up(heart_power_up_list)
+
+            for hearts in heart_power_up_list:
+                hearts.show_power_up(screen)
+                hearts.heart_pickup(indian, cowboy, heart)
+
+            if timer > super_ammo_timer:
+
+                super_ammo_timer = timer + randint(14, 20)
+                super_ammo = Ammo_power_up()
+                super_ammo.add_power_up(super_ammo_power_up_list)
+
+            for super_ammo in super_ammo_power_up_list:
+
+                super_ammo.show_power_up(screen)
+                super_ammo.super_pickup(indian, cowboy)
+
+
+
+
             # Update screen
             pygame.display.flip()
 
@@ -128,14 +153,8 @@ def main():
             screen.blit(BG, (0,0))
 
             # Starts game over when either character dies.
-            if len(indian.health) == 0:
-                cowboy_wins.show_element(screen)
-                sleep(1)
-                main()
 
-            if len(cowboy.health) == 0:
-                indian_wins.show_element(screen)
-                sleep(1)
+            if winner.winner(cowboy, indian, screen):
                 main()
 
         pygame.quit()

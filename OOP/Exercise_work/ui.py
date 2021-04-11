@@ -4,7 +4,8 @@
 
 import pygame
 from config import *
-import time
+from time import sleep
+#from main import main
 
 
 
@@ -26,8 +27,45 @@ class Ui(pygame.sprite.Sprite):
         self.rect.centery = (SCREEN_SIZE_VER / 2)
         screen.blit(self.surf, self.rect)
         pygame.display.flip()
-        time.sleep(1.2)
+        sleep(1.2)
 
     # Will be used to show the winner.
     #def game_end(self):
+
+    def countdown(self, screen):
+
+        self.surf = pygame.image.load("images/33.png")
+        self.surf.set_colorkey(GREEN_SCREEN)
+        self.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+        self.surf = pygame.image.load("images/22.png")
+        self.surf.set_colorkey(GREEN_SCREEN)
+        self.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+        self.surf = pygame.image.load("images/11.png")
+        self.surf.set_colorkey(GREEN_SCREEN)
+        self.show_element(screen)
+        screen.blit(BG, (0, 0))
+
+    def winner(self, cowboy, indian, screen):
+
+
+        if len(indian.health) == 0:
+
+            self.surf = pygame.image.load("images/cowboy_wins.png")
+            self.surf.set_colorkey(GREEN_SCREEN)
+            self.show_element(screen)
+            sleep(1)
+            return True
+
+        if len(cowboy.health) == 0:
+
+            self.surf = pygame.image.load("images/indian_wins.png")
+            self.surf.set_colorkey(GREEN_SCREEN)
+            self.show_element(screen)
+            sleep(1)
+            return True
+
 
