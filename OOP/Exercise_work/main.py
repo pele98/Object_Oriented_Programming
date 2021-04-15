@@ -37,6 +37,7 @@ def main():
 
         # Creates indian and cowboy objects.
         # Also define graphigs to them.
+
         indian = Character(INDIAN_STANDING, "Indian", INDIAN_LEFT, INDIAN_RIGHT, indian_x, indian_y)
         cowboy = Character(COWBOY_STANDING, "Cowboy", COWBOY_LEFT, COWBOY_RIGHT, cowboy_x, cowboy_y)
 
@@ -74,7 +75,6 @@ def main():
         while running:
 
             timer = perf_counter()
-            print(timer)
 
             # Detects events while game is running.
             for event in pygame.event.get():
@@ -113,7 +113,6 @@ def main():
 
             # Moving function
             indian.move(pressed_keys)
-
             cowboy.move(pressed_keys)
 
             # Bullet travel and hit detection
