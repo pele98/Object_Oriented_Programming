@@ -24,6 +24,11 @@ bullet_y = 11
 arrow_x = 56
 arrow_y = 19
 
+cowboy_x = 57
+cowboy_y = 129
+
+indian_x = 64
+indian_y = 116
 
 INF = 100**100
 
@@ -42,6 +47,14 @@ TWO = pygame.image.load("images/22.png")
 THREE = pygame.image.load("images/33.png")
 COWBOY_WINS = pygame.image.load("images/cowboy_wins.png")
 INDIAN_WINS = pygame.image.load("images/indian_wins.png")
+
+COWBOY_STANDING = "images/updated_sprites/cowboy1.png"
+COWBOY_LEFT = "images/updated_sprites/cowboy2.png"
+COWBOY_RIGHT = "images/updated_sprites/cowboy3.png"
+
+INDIAN_STANDING = "images/updated_sprites/indian1.png"
+INDIAN_LEFT = "images/updated_sprites/indian2.png"
+INDIAN_RIGHT = "images/updated_sprites/indian3.png"
 
 # Keyboard inputs are located here.
 from pygame.locals import (

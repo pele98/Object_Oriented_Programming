@@ -15,8 +15,6 @@ from random import randint
 
 running = True
 
-
-
 def main():
 
         # Initialize pygame
@@ -25,14 +23,22 @@ def main():
         # Sets up screen size
         screen = pygame.display.set_mode([SCREEN_SIZE_HOR, SCREEN_SIZE_VER])
 
-        heart_timer = randint(7, 12)
-        super_ammo_timer = randint(14, 20)
+        heart_timer = randint(7, 12) + 3
+        super_ammo_timer = randint(14, 20) + 3
+
+        timer = perf_counter()
+
+        if timer > 5:
+            heart_timer += timer
+            super_ammo_timer += timer
+
+
         global running
 
         # Creates indian and cowboy objects.
         # Also define graphigs to them.
-        indian = Character("images/indian_1.png", "Indian")
-        cowboy = Character("images/cowboy_1.png", "Cowboy")
+        indian = Character(INDIAN_STANDING, "Indian", INDIAN_LEFT, INDIAN_RIGHT, indian_x, indian_y)
+        cowboy = Character(COWBOY_STANDING, "Cowboy", COWBOY_LEFT, COWBOY_RIGHT, cowboy_x, cowboy_y)
 
         # Adds indian and cowboy to sprite group.
         all_sprites = pygame.sprite.Group()
@@ -68,7 +74,7 @@ def main():
         while running:
 
             timer = perf_counter()
-
+            print(timer)
 
             # Detects events while game is running.
             for event in pygame.event.get():
@@ -107,6 +113,7 @@ def main():
 
             # Moving function
             indian.move(pressed_keys)
+
             cowboy.move(pressed_keys)
 
             # Bullet travel and hit detection
@@ -124,7 +131,7 @@ def main():
 
             if timer > heart_timer:
 
-                heart_timer = timer + randint(7, 12)
+                heart_timer = timer + randint(11, 17)
                 heart_power_up = Heart_power_up()
                 heart_power_up.add_power_up(heart_power_up_list)
 
@@ -134,7 +141,7 @@ def main():
 
             if timer > super_ammo_timer:
 
-                super_ammo_timer = timer + randint(14, 20)
+                super_ammo_timer = timer + randint(20, 26)
                 super_ammo = Ammo_power_up()
                 super_ammo.add_power_up(super_ammo_power_up_list)
 
@@ -142,9 +149,6 @@ def main():
 
                 super_ammo.show_power_up(screen)
                 super_ammo.super_pickup(indian, cowboy)
-
-
-
 
             # Update screen
             pygame.display.flip()

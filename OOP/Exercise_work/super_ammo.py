@@ -37,6 +37,8 @@ class Ammo_power_up(pygame.sprite.Sprite):
             self.kill()
 
             cowboy.ammo = []
+            cowboy.reload_img = False
+            cowboy.reloaded = True
             for ammo in range(0, 1):
 
                 ammo = Ammo("images/bullet.png", "bullet")
@@ -55,6 +57,8 @@ class Ammo_power_up(pygame.sprite.Sprite):
             self.kill()
 
             indian.ammo = []
+            indian.reload_img = False
+            indian.reloaded = True
 
             for ammo in range(0, 1):
 

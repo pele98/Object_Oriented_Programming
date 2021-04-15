@@ -8,12 +8,14 @@ from ammo import *
 
 class Character(pygame.sprite.Sprite):
 
-    def __init__(self, sprite, name):
+    def __init__(self, sprite, name, left, right, character_x, character_y):
         super(Character, self).__init__()
         self.name = name
-        self.surf = pygame.image.load(sprite)                           # Surface image
+        self.surf = pygame.transform.scale(pygame.image.load(sprite), (character_x, character_y))                    # Surface image
         self.surf.set_colorkey(GREEN_SCREEN)                            # Defining see through color
         self.rect = self.surf.get_rect()    # Sets up characters hitbox
+        self.animation_list = [left, right]
+        self.animation_counter = 0
         self.ammo = []                                                  # Reloaded ammo
         self.shot_ammo = []                                             # Ammo that character has shot
         self.reloaded = False
@@ -23,6 +25,16 @@ class Character(pygame.sprite.Sprite):
         self.health = []
 
     # Reloading function
+
+    def animation_update(self, animation):
+
+        self.surf = pygame.transform.scale(pygame.image.load(animation), (int(indian_x), int(indian_y)))
+        self.surf.set_colorkey(GREEN_SCREEN)
+        self.rect = self.surf.get_rect(topleft=(self.rect.x, self.rect.y))
+
+        self.animation_counter += 1
+        if self.animation_counter == 2:
+            self.animation_counter = 0
 
     def reload(self, pressed_keys, time):
 
@@ -131,24 +143,83 @@ class Character(pygame.sprite.Sprite):
     # Moving function
     def move(self, pressed_keys):
 
+        global indian_y, indian_x, cowboy_y, cowboy_x
+
         # Detects keyboard inputs and calculates new location for character.
         if self.name == "Indian":
 
+            animation = self.animation_list[self.animation_counter]
+
             if pressed_keys[K_UP]:
+
+                indian_y -= 1
+                indian_x -= 0.8
+                print("y", indian_y)
+                print("x", indian_x)
+                if indian_y <= 92:
+                    indian_y = 92
+                    indian_x = 44
+                self.surf = pygame.transform.scale(pygame.image.load(animation), (int(indian_x), int(indian_y)))
+                self.surf.set_colorkey(GREEN_SCREEN)
+                self.rect = self.surf.get_rect(topleft=(self.rect.x, self.rect.y))
                 self.rect.move_ip(0, -MOVEMENT_SPEED)
+
             if pressed_keys[K_DOWN]:
+
+
+                indian_y += 1
+                indian_x += 0.8
+                print("y", indian_y)
+                print("x", indian_x)
+                if indian_y >= 146:
+                    indian_y = 146
+                    indian_x = 88
+                self.surf = pygame.transform.scale(pygame.image.load(INDIAN_STANDING),
+                                                   (int(indian_x), int(indian_y)))
+                self.surf.set_colorkey(GREEN_SCREEN)
+                self.rect = self.surf.get_rect(topleft=(self.rect.x, self.rect.y))
                 self.rect.move_ip(0, MOVEMENT_SPEED)
+
             if pressed_keys[K_LEFT]:
                 self.rect.move_ip(-MOVEMENT_SPEED, 0)
+
             if pressed_keys[K_RIGHT]:
                 self.rect.move_ip(MOVEMENT_SPEED, 0)
 
         if self.name == "Cowboy":
 
             if pressed_keys[K_w]:
+
+                cowboy_y -= 1.0
+                cowboy_x -= 0.441
+                print("y", cowboy_y)
+                print("x", cowboy_x)
+                if cowboy_y <= 104:
+                    cowboy_y = 104
+                    cowboy_x = 46
+                self.surf = pygame.transform.scale(pygame.image.load(COWBOY_STANDING),
+                                                   (int(cowboy_x), int(cowboy_y)))
+                self.surf.set_colorkey(GREEN_SCREEN)
+                self.rect = self.surf.get_rect(topleft=(self.rect.x, self.rect.y))
+
                 self.rect.move_ip(0, -MOVEMENT_SPEED)
+
             if pressed_keys[K_s]:
+
+                cowboy_y += 1
+                cowboy_x += 0.44
+                print("y", cowboy_y)
+                print("x", cowboy_x)
+                if cowboy_y >= 158:
+                    cowboy_y = 158
+                    cowboy_x = 70
+                self.surf = pygame.transform.scale(pygame.image.load(COWBOY_STANDING),
+                                                   (int(cowboy_x), int(cowboy_y)))
+                self.surf.set_colorkey(GREEN_SCREEN)
+                self.rect = self.surf.get_rect(topleft=(self.rect.x, self.rect.y))
+
                 self.rect.move_ip(0, MOVEMENT_SPEED)
+
             if pressed_keys[K_a]:
                 self.rect.move_ip(-MOVEMENT_SPEED, 0)
             if pressed_keys[K_d]:
@@ -159,8 +230,8 @@ class Character(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > SCREEN_SIZE_HOR:
             self.rect.right = SCREEN_SIZE_HOR
-        if self.rect.top <= 380:
-            self.rect.top = 380
+        if self.rect.bottom <= 496:
+            self.rect.bottom = 496
         if self.rect.bottom >= SCREEN_SIZE_VER:
             self.rect.bottom = SCREEN_SIZE_VER
 
