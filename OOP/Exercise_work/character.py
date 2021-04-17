@@ -198,8 +198,6 @@ class Character(pygame.sprite.Sprite):
 
                 cowboy_y -= 1.0
                 cowboy_x -= 0.441
-                print("y", cowboy_y)
-                print("x", cowboy_x)
                 if cowboy_y <= 104:
                     cowboy_y = 104
                     cowboy_x = 46
@@ -212,8 +210,6 @@ class Character(pygame.sprite.Sprite):
 
                 cowboy_y += 1
                 cowboy_x += 0.44
-                print("y", cowboy_y)
-                print("x", cowboy_x)
                 if cowboy_y >= 158:
                     cowboy_y = 158
                     cowboy_x = 70

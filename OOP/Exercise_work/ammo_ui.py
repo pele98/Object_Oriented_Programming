@@ -39,7 +39,8 @@ class Ammo_ui(Ui):
                     screen.blit(ammo.surf, ammo.rect)
 
                     x += 30
-
+        # Indians show_ammo function identical.
+        # Coordinates are different.
         if character.name == "Indian":
 
             x = 1826
@@ -77,6 +78,8 @@ class Ammo_ui(Ui):
                 if self.counter >= 3.9:
                     self.counter = 0
 
+            # Identical to Indians reload animation.
+            # Coordinates are different.
             if character.name == "Cowboy":
 
                 self.surf = pygame.image.load(self.reload_list[int(self.counter)])
