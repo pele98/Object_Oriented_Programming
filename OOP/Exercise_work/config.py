@@ -4,8 +4,6 @@
 
 import pygame
 
-FRAME_DURATION = 1/120
-
 SCREEN_SIZE_VER = 1080
 SCREEN_SIZE_HOR = 1920
 
@@ -18,11 +16,16 @@ RELOAD_SPEED_COWBOY = 2
 SHOOTING_SPEED_INDIAN = 0.3
 RELOAD_SPEED_INDIAN = 0.9
 
-bullet_x = 20
-bullet_y = 11
+BULLET_X = 20
+BULLET_Y = 11
 
-arrow_x = 56
-arrow_y = 19
+ARROW_X = 56
+ARROW_Y = 19
+
+BULLET_MULTIPLIER = 8
+ARROW_MULTIPLIER = 6
+
+SUPER_AMMO_DAMAGE = 3
 
 cowboy_x = 57
 cowboy_y = 129

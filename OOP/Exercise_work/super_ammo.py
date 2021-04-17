@@ -16,8 +16,8 @@ class Ammo_power_up(pygame.sprite.Sprite):
         self.surf.set_colorkey(GREEN_SCREEN)
         self.rect = self.surf.get_rect()
 
-
-
+    # Creates new power up into random location in screen.
+    # Adds it to the list of all ammo power ups.
     def add_power_up(self, super_ammo_power_up_list):
 
         self.rect.centerx = randint(300, 1620)
@@ -25,10 +25,13 @@ class Ammo_power_up(pygame.sprite.Sprite):
 
         super_ammo_power_up_list.append(self)
 
+    # Updates power up into the screen.
     def show_power_up(self, screen):
 
         screen.blit(self.surf, self.rect)
 
+    # Sets up Character ammo list as empty.
+    # Adds super ammo to ammo list
     def super_pickup(self, indian, cowboy):
 
         if self.rect.colliderect(cowboy.rect):
@@ -40,11 +43,10 @@ class Ammo_power_up(pygame.sprite.Sprite):
             cowboy.reload_img = False
             cowboy.reloaded = True
             for ammo in range(0, 1):
-
                 ammo = Ammo("images/bullet.png", "bullet")
                 ammo.surf = pygame.image.load("images/bullet.png")
                 ammo.surf = pygame.transform.scale(pygame.image.load("images/bullet.png"),
-                                                   (bullet_x * 10, bullet_y * 10))
+                                                   (BULLET_X * BULLET_MULTIPLIER, BULLET_Y * BULLET_MULTIPLIER))
                 ammo.surf.set_colorkey(GREEN_SCREEN)
                 ammo.rect = ammo.surf.get_rect()
                 ammo.super = True
@@ -61,15 +63,12 @@ class Ammo_power_up(pygame.sprite.Sprite):
             indian.reloaded = True
 
             for ammo in range(0, 1):
-
                 ammo = Ammo("images/arrow.png", "arrow")
                 ammo.surf = pygame.image.load("images/arrow.png")
                 ammo.surf = pygame.transform.scale(pygame.image.load("images/arrow.png"),
-                                                   (arrow_x * 8, arrow_y * 8))
+                                                   (ARROW_X * ARROW_MULTIPLIER, ARROW_Y * ARROW_MULTIPLIER))
                 ammo.surf.set_colorkey(GREEN_SCREEN)
                 ammo.rect = ammo.surf.get_rect()
                 ammo.super = True
 
                 indian.ammo.append(ammo)
-
-

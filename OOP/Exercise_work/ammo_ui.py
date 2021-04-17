@@ -16,7 +16,8 @@ class Ammo_ui(Ui):
         self.reload_list = ["images/circle1.png", "images/circle2.png", "images/circle3.png", "images/circle4.png"]
         self.counter = 0
 
-    # Shows every ammo that character has in ammo list
+    # Shows every ammo that character has in ammo list.
+    # Calculates X Y Coordinates for each element.
     def show_ammo(self, character, screen):
 
         y = 10
@@ -27,7 +28,7 @@ class Ammo_ui(Ui):
 
             for ammo in character.ammo:
 
-                if ammo.super == True:
+                if ammo.super:
 
                     ammo.rect.x = x
                     ammo.rect.y = 90
@@ -45,7 +46,7 @@ class Ammo_ui(Ui):
 
             for ammo in character.ammo:
 
-                if ammo.super == True:
+                if ammo.super:
 
                     ammo.rect.x = 1460
                     ammo.rect.y = 90
@@ -60,9 +61,10 @@ class Ammo_ui(Ui):
                     x -= 70
 
     # When character is reloading, shows reload animation.
+    # Uses timer from main for timing the duration.
     def show_reload(self, character, screen):
 
-        if character.reload_img == True:
+        if character.reload_img:
 
             if character.name == "Indian":
 

@@ -16,10 +16,9 @@ class Ammo(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect()        # Hitbox
 
         self.shot = False
-
         self.super = False
 
-    # Function for shot ammo
+    # Function for moving ammo and detecting hits.
     def ammo_shot(self, shooter, enemy):
 
         if self.shot == True:
@@ -33,9 +32,9 @@ class Ammo(pygame.sprite.Sprite):
                     self.rect.x = -2200
                     self.kill()
 
-                    if self.super:
+                    if self.super:  # If ammo is super it deals 3 damage.
 
-                        for heart in range(3):
+                        for heart in range(SUPER_AMMO_DAMAGE):
 
                             if len(enemy.health) == 0:
                                 enemy.kill()
@@ -60,7 +59,7 @@ class Ammo(pygame.sprite.Sprite):
 
                     if self.super:
 
-                        for heart in range(3):
+                        for heart in range(SUPER_AMMO_DAMAGE):
 
                             if len(enemy.health) == 0:
                                 enemy.kill()
